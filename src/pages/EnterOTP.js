@@ -7,11 +7,12 @@ const EnterOTP=()=>{
 
     const [OTP,setOTP] = useState('');
     const [mobile,setmobile] = useState('');
+    
 
     
 
     const enterOTPLogin=()=>{
-
+        
         const userObj={};
         userObj.mobile=mobile ;
         userObj.OTP= OTP;
@@ -31,6 +32,9 @@ const EnterOTP=()=>{
                     console.log(data)
                     alert('Login Successfully!')
                     localStorage.setItem('token',data.token)
+                    localStorage.setItem('mobile',data.mobile)
+                    localStorage.setItem('role',data.role)
+                    localStorage.setItem("date", new Date().toString()); 
                     navigate('/Dashboard')
             })
         });

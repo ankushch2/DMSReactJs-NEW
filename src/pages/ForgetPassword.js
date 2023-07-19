@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
-import './front.css';
+import './ForgetPassword.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ForgetPassword=()=>{
@@ -42,24 +42,20 @@ const ForgetPassword=()=>{
 
     return(
         <>
-        <i>
+       
         <div class="box-form">
-            <div class="left">
-                <div class="overlay">
-                <h2>ForgetPassword</h2>
-                <p>Please fill in your credentials to ForgetPassword.</p>
-                </div>
-             </div>
+            
         <div class="center">
         <div class="col px-md-2">     
         <div className="row">
         <div class="form-group col-md">
-            <p for="Choose Option"><i>Please select anyone option</i></p>
+        <h2>ForgetPassword</h2>
+                 <p for="Choose Option"><i>Please select anyone option</i></p>
             <label for="ForgetPassword">Forget Password using Email Id</label>
                     <input type="checkbox" checked={disable1} onChange={(e)=> setDisable1(e.target.checked)} />
                     <input type="text" disabled={!disable1} class="form-control" id="EnterDetail" 
                     value={email} onChange={(e)=>setEmail(e.target.value)}
-                    aria-describedby="EnterDetail" placeholder="Enter Detail" />
+                    aria-describedby="EnterDetail" placeholder="Email" />
                     <button type="button" onClick={()=>resetPassword()} class="btn btn-primary">Reset Password</button>
        
         </div>
@@ -76,7 +72,7 @@ const ForgetPassword=()=>{
                     <input type="checkbox" checked={disable2} onChange={(e)=> setDisable2(e.target.checked)} />
                     <input type="text" disabled={!disable2} class="form-control" id="EnterDetail" 
                     value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)}
-                    aria-describedby="EnterDetail" placeholder="Enter Detail" />
+                    aria-describedby="EnterDetail" placeholder="Mobile Number" />
                     <button type="button" onClick={()=>getOTPforNumber()} class="btn btn-primary">Get OTP</button>
         </div>
         </div>
@@ -84,7 +80,7 @@ const ForgetPassword=()=>{
         </div>
        </div>
        </div>
-        </i>
+       
         </>
     );
 }

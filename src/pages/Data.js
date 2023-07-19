@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { CSVLink} from 'react-csv';
 import JsPDF from 'jspdf';
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 function Exportexcel() {
  const [userdata, setUserdata]= useState([]); 
+ const [error, setError] = useState("");
  useEffect( ()=>{
     const getuserdata= async ()=>{
       const userreq= await fetch("http://localhost:9001/api/v1/dms");
@@ -16,6 +18,27 @@ function Exportexcel() {
     }
 getuserdata();
  },[]);
+
+ const navigator= useNavigate();
+
+ const handleDelete=async (id) =>
+    {
+        const response =await fetch('http://localhost:9001/api/v1/dms/$(id)',{ method: 'DELETE',
+                    });
+                    const result = await response.json();
+                    if (!response.ok) {
+                        console.log(result.error);
+                        setError(result.error);
+                    }
+                    if (response.ok)
+                    {
+                        setError("Data Deleted");
+                        setTimeout( () => {
+                            setError("");
+                            setUserdata();
+                        },1000);
+                    }
+    };
 
 
 
@@ -37,6 +60,9 @@ getuserdata();
                   <th scope="col">Pan Card</th>
                   <th scope="col">GST</th>
                   <th scope="col">Address</th>
+                  <th scope="col">Approval</th>
+                  <th scope="col">Rejection</th>
+                  <th scope="col">Current Status</th>
 
                 </tr>
               </thead>
@@ -50,7 +76,18 @@ getuserdata();
                   <td >{getdms.lastName} </td>
                   <td >{getdms.pan} </td>
                   <td >{getdms.gst} </td>    
-                  <td >{getdms.address} </td>         
+                  <td >{getdms.address} </td>   
+                  <td>          
+                      < Link type="button" class="btn btn-success" style={{marginRight: "5px"}}
+                        to={'/${userdata._id}'} >Approval</Link>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-danger" onClick={()=> handleDelete(userdata.id)}>Reject</button>
+                  </td>
+                  <td>
+                      <button type="button" class="btn btn-warning">Current Status</button>
+                
+                  </td>      
            
                 </tr>
                   ) )

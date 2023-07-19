@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import './front.css';
+import './Signin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
  
 
@@ -14,6 +14,7 @@ const Signin=()=>{
     const [password,setPassword]= useState('');
     const [passwordShown,setPasswordShown]= useState('');
     const [rememberMe,setRememberMe]= useState(false);
+    
 
 
     const eye = <FontAwesomeIcon icon={faEye} />;
@@ -69,13 +70,7 @@ const Signin=()=>{
     return(
     <>
     <div class="box-form">
-            <div class="left">
-                <div class="overlay">
-                <h1>DMS</h1>
-                <p>Welcome to Dealer Management System</p>
-                
-                </div>
-            </div>
+        
             <div class="center">
                 <div class="col px-md-1">
                     <h1>Login</h1>
@@ -90,7 +85,7 @@ const Signin=()=>{
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                         value={password} onChange={(e)=>setPassword(e.target.value)}
                         aria-describedby="emailHelp" placeholder="Enter Password" />
-                        <i class="input-group-text" for="inputGroupSelect02" onClick={togglePasswordVisiblity}>{eye} Show Password</i>{""}
+                        <i class="input-group-text" for="inputGroupSelect02" onClick={togglePasswordVisiblity}>{eye}</i>{""}
                 </div>
                     <div class="row">
                         <div class="form-group col-md">

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import validator from "validator";
-import './front.css';
+import './Register.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register=()=>{
@@ -48,7 +48,7 @@ const Register=()=>{
         console.log('create user API');
         if(phoneNumber===''|| email==='' || password==='' || firstName==='' || lastName==='' ||gst===''|| pan===''|| address===''|| role===''|| type==='')
         {
-            alert('Please enter the fields');
+            alert('All field are required');
             return;
         }
         else
@@ -89,7 +89,8 @@ const Register=()=>{
    
     
     return(
-        <><i>
+        <>
+       
         <div class="box-form">
 
             <div class="col px-md-1">
@@ -99,13 +100,11 @@ const Register=()=>{
             <div class="form-group required">
                 <div className="row">
                 <div class="form-group col-md-6">
-                    <label class="control-level" for="firstName">Enter First Name</label>
                     <input type="text" class="form-control" id="firstName" 
                     value={firstName} onChange={(e)=>setFirstName(e.target.value)}
                     aria-describedby="firstName" placeholder="Enter First Name" />
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="lastName">Enter Last Name</label>
                     <input type="text" class="form-control" id="lastName" 
                     value={lastName} onChange={(e)=>setLastName(e.target.value)}
                     aria-describedby="lastName" placeholder="Enter Last Name" />
@@ -113,26 +112,23 @@ const Register=()=>{
             </div>
             <div className="row">
                 <div class="form-group col-md-6">
-                    <label for="phoneNumber">Enter Phone</label>
                     <input type="tel" class="form-control" id="phoneNumber" MaxLength="10"
                     value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)}
                     aria-describedby="emailHelp" placeholder="Enter Phone" />
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="email">Enter Email</label>
                     <input type="email" class="form-control" id="email" 
                     value={email} onChange={(e)=>setEmail(e.target.value)}
                     aria-describedby="emailHelp" placeholder="Enter Email" />
                 </div>
                 <div class="form-group col-md-6 pass-wrapper">
-                    <label for="password">Enter Password</label>
                     <div class="input-group mb-3">
                     <input type={passwordShown ? "text" : "password"} class="form-control" id="Password" 
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                     value={password} onChange={(e)=>setPassword(validate(e.target.value))}
                     aria-describedby="emailHelp" placeholder="Enter Password" />
                     
-                    <i class="input-group-text" for="inputGroupSelect02" onClick={togglePasswordVisiblity}>{eye} Show Password</i>{""}
+                    <i class="input-group-text" for="inputGroupSelect02" onClick={togglePasswordVisiblity}>{eye} </i>{""}
                     <small id="passwordHelpBlock" class="form-text text-muted">
                     {errorMessage === '' ? null :
                     <span style={{
@@ -145,22 +141,26 @@ const Register=()=>{
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="role">Enter Role</label>
+                    <select class="form-select" aria-label="Default select example">
+                    <option selected>Select Role</option>
+                    <option value="Manager" >Manager</option>
+                    <option value="Wholeseller">Wholeseller</option>
                     <input type="role" class="form-control" id="role" 
                     value={role} onChange={(e)=>setRole(e.target.value)}
                     aria-describedby="emailHelp" placeholder="Enter Role" />
+                    </select>
+
+                   
                 </div>
             </div>
             
             <div className="row">
                 <div class="form-group col-md-6">
-                    <label for="type">Enter Type</label>
                     <input type="text" class="form-control" id="designation" 
                     value={type} onChange={(e)=>setType(e.target.value)}
-                    aria-describedby="type" placeholder="Enter Type" />
+                    aria-describedby="type" placeholder="Enter Shop Type" />
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="address">Enter Address</label>
                     <input type="address" class="form-control" id="address" 
                     value={address} onChange={(e)=>setAddress(e.target.value)}
                     aria-describedby="address" placeholder="Enter address" />
@@ -169,8 +169,7 @@ const Register=()=>{
             </div>
             <div className="row">
                 <div class="form-group col-md-6">
-                    <label for="pan">Enter Pan Card Detail</label>
-                    <input type="pan" class="form-control" id="pan" MaxLength="10" 
+                     <input type="pan" class="form-control" id="pan" MaxLength="10" 
                     value={pan} onChange={(e)=>setPAN(e.target.value)}
                     aria-describedby="pan" placeholder="Enter Pan Card Detail" />
                     <div class="mb-3">
@@ -179,7 +178,6 @@ const Register=()=>{
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="gst">Enter GST Detail</label>
                     <input type="gst" class="form-control" id="gst" MaxLength="15"
                     value={gst} onChange={(e)=>setgst(e.target.value)}
                     aria-describedby="gst" placeholder="Enter GST Detail" />
@@ -214,7 +212,7 @@ const Register=()=>{
         </div>
         </div>
         </div>
-        </i>
+        
 
         </>
     );
